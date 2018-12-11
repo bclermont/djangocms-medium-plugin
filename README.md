@@ -16,6 +16,7 @@ Example of data available in every entry
     'title': 'ERC-1400: Evolution of a Security Token Standard',
     'link': 'https://blog.polymath.network/erc-1400-evolution-of-a-security-token-standard-1e25d12b9261?source=rss----5f051a102000---4',
     'id': 'https://medium.com/p/1e25d12b9261',
+    'image': 'https://cdn-images-1.medium.com/max/1024/1*9lYIZdgqrX2e2giKMHlt6g.png',
     'tags': [
         {
             'term': 'ethereum',
