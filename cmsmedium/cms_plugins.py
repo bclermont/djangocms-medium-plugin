@@ -48,7 +48,7 @@ class MediumPlugin(CMSPluginBase):
                         instance.cache.seconds, instance.posts)
         entries = cache.get(cache_key)
         if entries is None:
-            LOGGER.debug("Parse RSS feed %s", instance.url)
+            LOGGER.debug("Parse RSS feed %s", instance.rss_url)
             output = feedparser.parse(instance.rss_url)
             entries = output['entries'][0:instance.posts-1]
             for i in range(0, len(entries)):
