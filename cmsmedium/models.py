@@ -1,9 +1,14 @@
 import datetime
+import urllib.parse
 
 from django.db import models
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.translation import ugettext_lazy as _
 
+_URL_PATH_SEPARATOR = '/'
+_URL_NETLOC = 'medium.com'
+_URL_ROOT_MEDIUM = 'https://%s/' % _URL_NETLOC
+_PATH_FEED = 'feed'
 
 class MediumWebsite(CMSPlugin):
     """
@@ -33,4 +38,8 @@ class MediumWebsite(CMSPlugin):
 
     @property
     def rss_url(self):
-        return self.url.rstrip("/") + "/feed"
+        parsed = urllib.parse.urlparse(self.url)
+        if parsed.netloc == _URL_NETLOC:
+            username = parsed.path.lstrip(_URL_PATH_SEPARATOR).rstrip(_URL_PATH_SEPARATOR)
+            return _URL_ROOT_MEDIUM + _PATH_FEED + _URL_PATH_SEPARATOR + username
+        return self.url.rstrip(_URL_PATH_SEPARATOR) + _URL_PATH_SEPARATOR + _PATH_FEED
