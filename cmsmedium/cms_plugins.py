@@ -63,6 +63,7 @@ class MediumPlugin(CMSPluginBase):
         else:
             LOGGER.debug("Cached value")
         context['medium_entries'] = entries
+        context['medium_url'] = instance.url
         return context
 
 
