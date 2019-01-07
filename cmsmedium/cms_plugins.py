@@ -12,6 +12,7 @@ from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import ugettext_lazy as _
 from django.core.cache import cache
+from django.utils import timezone
 
 from .models import MediumWebsite
 
@@ -53,11 +54,16 @@ class MediumPlugin(CMSPluginBase):
             entries = output['entries'][0:instance.posts-1]
             for i in range(0, len(entries)):
                 entries[i]['content'] = entries[i]['summary']
-                for key in ('summary', 'title_detail', 'links', 'guidislink', 'authors', 'author_detail', 'published', 'updated'):
+                for key in ('summary', 'title_detail', 'links', 'guidislink', 'authors',
+                            'author_detail', 'published', 'updated'):
                     del entries[i][key]
                 parser = firstImageParser()
                 parser.feed(entries[i]['content'])
                 entries[i]['image'] = parser.image
+                entries[i]['published_parsed'] =  timezone.make_aware(
+                    timezone.datetime(*entries[i]['published_parsed'][:-3]),
+                    timezone.get_default_timezone()
+                )
             cache.set(cache_key, entries, timeout=instance.cache.seconds)
             LOGGER.debug("Parsed RSS feed %s: %d entries", instance.url, len(output['entries']))
         else:
