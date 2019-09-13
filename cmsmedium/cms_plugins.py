@@ -51,7 +51,7 @@ class MediumPlugin(CMSPluginBase):
         if entries is None:
             LOGGER.debug("Parse RSS feed %s", instance.rss_url)
             output = feedparser.parse(instance.rss_url)
-            entries = output['entries'][0:instance.posts-1]
+            entries = output['entries'][0:instance.posts]
             for i in range(0, len(entries)):
                 entries[i]['content'] = entries[i]['summary']
                 for key in ('summary', 'title_detail', 'links', 'guidislink', 'authors',
