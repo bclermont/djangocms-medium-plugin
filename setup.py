@@ -1,4 +1,3 @@
-__author__ = 'Bruno Clermont'
 import os
 from setuptools import setup, find_packages
 
@@ -13,12 +12,12 @@ def read(fname):
 setup(
     name=PKG_NAME,
     version=VERSION,
-    author="Guangwen Zhou",
+    author="Bruno Clermont",
     author_email="bruno@robotinfra.com",
     description="A Django CMS plugin to show posts of Medium.",
     license="BSD",
     keywords="django cms plugin medium",
-    url="http://github.com/bclermont/"+PKG_NAME,
+    url="http://github.com/bclermont/" + PKG_NAME,
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Plugins',
@@ -33,12 +32,9 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities',
     ],
-    install_requires=[
-        'feedparser',
-        'Django >= 1.4',
-        'django-cms >= 3.5.3'],
+    install_requires=['feedparser', 'dateutil', 'Django >= 1.4', 'django-cms >= 3.5.3'],
     long_description=read("README.md"),
-    packages = find_packages(),
+    packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
 )
