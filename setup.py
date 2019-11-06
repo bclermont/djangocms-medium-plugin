@@ -32,7 +32,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities',
     ],
-    install_requires=['feedparser', 'dateutil', 'Django >= 1.4', 'django-cms >= 3.5.3'],
+    install_requires=['feedparser', 'python-dateutil', 'Django >= 1.4', 'django-cms >= 3.5.3'],
     long_description=read("README.md"),
     packages=find_packages(),
     include_package_data=True,
