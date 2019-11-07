@@ -6,6 +6,7 @@ Django CMS plugin that render posts of medium
 import logging
 import re
 from html.parser import HTMLParser
+from operator import attrgetter
 
 import dateutil.parser
 import requests
@@ -106,6 +107,11 @@ class MediumPlugin(CMSPluginBase):
         else:
             LOGGER.debug("Cached value")
 
+        entries = sorted(
+            entries,
+            key=attrgetter("published_parsed"),
+            reverse=True,
+        )
         context['medium_entries'] = entries
         context['medium_url'] = instance.url
         return context
