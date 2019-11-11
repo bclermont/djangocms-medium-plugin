@@ -1,3 +1,4 @@
+{% load i18n %}
 <ul>
     {% for entry in medium_entries %}
     <li>
@@ -8,6 +9,6 @@
         {{ entry.content|truncatewords_html:30|striptags|safe }}
     </li>
     {% empty %}
-    <li>No entries...</li>
+    <li>{% trans "No entries..." %}</li>
     {% endfor %}
 </ul>
